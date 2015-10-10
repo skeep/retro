@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Retro</title>
+	</head>
+	<body ng-app="retroApp" ng-controller="appController">
+		<h1>Retro</h1>
+		<form ng-submit="app.send()">
+			<label for="user">user : <input type="text" id="user" ng-model="app.user" ng-disabled="true"></label>
+			<label for="message">Message : <input type="text" id="message" ng-model="app.message"></label>
+			<button type="submit">Submit</button>
+		</form>
+		<div>
+			<ul>
+				<li ng-repeat="m in app.messageStream">
+					{{m}}
+				</li>
+			</ul>
+		</div>
+		<script src="bower_components/angular/angular.min.js"></script>
+		<script src="bower_components/pusher/dist/pusher.min.js"></script>
+		<script src="bower_components/pusher-angular/lib/pusher-angular.min.js"></script>
+		<script src="script.js"></script>
+	</body>
+</html>

@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/skeep/retro#readme",
   "dependencies": {
+    "body-parser": "^1.14.1",
     "express": "^4.13.3",
-    "jade": "^1.11.0"
+    "jade": "^1.11.0",
+    "pusher": "^1.0.6"
   }
 }
