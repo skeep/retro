@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var Pusher = require('pusher');
 var bodyParser = require('body-parser');
+var mongodb = require('mongodb');
 
 var pusher = new Pusher({
   appId: '147172',
@@ -27,7 +28,26 @@ app.set('view engine', 'jade');
 // });
 
 app.post('/sendmessage', function(req, res) {
-	pusher.trigger('ads3r4', 'message', req.body);
+  pusher.trigger('ads3r4', 'message', req.body);
+});
+
+app.post('/createroom', function(req, res) {
+  var uri = 'mongodb://dbuser:userpass123@ds035664.mongolab.com:35664/heroku_d99f88bs';
+  console.log(req.body);
+  var room = [req.body];
+  mongodb.MongoClient.connect(uri, function(err, db) {
+    if (err) throw err;
+
+    var songs = db.collection('rooms');
+
+    songs.insert(room, function(err, result) {
+      if (err) throw err;
+
+      console.log(result);
+    });
+
+
+  });
 });
 
 app.listen(app.get('port'), function() {

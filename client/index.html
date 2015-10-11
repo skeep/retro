@@ -2,10 +2,22 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
+		<!-- Setting the right viewport -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<title>Retro</title>
 	</head>
 	<body ng-app="retroApp" ng-controller="appController">
 		<h1>Retro</h1>
+		<div ng-controller="AuthCtrl">
+			<h2>User</h2>
+			<input type="submit" ng-click="login()" value="Login" />
+			<input type="submit" ng-click="logout()" value="Logout" />
+			<br>
+			<span>His name is {{auth.profile.nickname}}</span>
+		</div>
+		<h2>Room</h2>
+		<form ng-submit="app.createRoom()"><label for="room"><input type="text" id="room" ng-model="app.room"></label><button type="submit">Create</button></form>
+		<h2>Messages</h2>
 		<form ng-submit="app.send()">
 			<label for="user">user : <input type="text" id="user" ng-model="app.user" ng-disabled="true"></label>
 			<label for="message">Message : <input type="text" id="message" ng-model="app.message"></label>
@@ -21,6 +33,14 @@
 		<script src="bower_components/angular/angular.min.js"></script>
 		<script src="bower_components/pusher/dist/pusher.min.js"></script>
 		<script src="bower_components/pusher-angular/lib/pusher-angular.min.js"></script>
+		<!-- We use client cookies to save the user credentials -->
+		<script src="//code.angularjs.org/1.2.16/angular-cookies.min.js"></script>
+		<!-- Auth0 Lock script and AngularJS module -->
+		<script src="//cdn.auth0.com/js/lock-7.9.min.js"></script>
+		<!-- angular-jwt and angular-storage -->
+		<script type="text/javascript" src="//cdn.rawgit.com/auth0/angular-storage/master/dist/angular-storage.js"></script>
+		<script type="text/javascript" src="//cdn.rawgit.com/auth0/angular-jwt/master/dist/angular-jwt.js"></script>
+		<script src="//cdn.auth0.com/w2/auth0-angular-4.js"> </script>
 		<script src="script.js"></script>
 	</body>
 </html>
